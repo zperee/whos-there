@@ -19,3 +19,12 @@ Das Tool sollte über den Browser bedienbar sein, zusätzlich wäre es zu wünsc
 ## Mockup
 Skizze des Dashboards auf welchem die aktuelle Woche angezeigt wird.
 ![mockup](doku/mockup.png)
+
+## Workflow
+### Dateneingabe
+Um eine neue Woche hinzuzufügen wird über das Webinterface die entsprechende Seite aufgerufen. In dem UI kann der Benutzer über eine Eingabemaske jeweils pro Wochentag den Titel der Mahlzeit definieren. Die Eingabe wird nach der übergabe validiert und bei erfolgreicher Validation in einem File auf dem System gespeichert.
+
+![add_new_week](doku/add_new_week.png)
+### Datenverarbeitung/Speicherung
+### Datenausgabe
+
