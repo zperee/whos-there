@@ -1,0 +1,47 @@
+{% extends "public_template.html" %}
+
+{% block title %}Add new week{% endblock %}
+
+{% block main %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Add a new week</h1>
+            <h6 class="font-weight-light">Week {{week['week_number']}}</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-2">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    {% for day, date in week['dates'].items() %}
+                    <a class="nav-item nav-link" id="{{ day }}-tab" data-toggle="tab" href="#{{ day }}" role="tab"
+                        aria-controls="{{ day }}">{{ day }}</a>
+                    {% endfor %}
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                {% for day, date in week['dates'].items() %}
+                <div class="tab-pane fade" id="{{ day }}" role="tabpanel" aria-labelledby="{{ day }}-tab">
+                    <div class="col-6 offset-3 text-center mt-5">
+                        <h3>{{date}}</h3>
+                    </div>
+                    <div class="col-6 offset-3 mt-3">
+                        <form method="POST">
+                            <div class="input-group">
+                                <input type="text" id="menu" name="menu-{{date}}" class="form-control"
+                                    placeholder="Menü">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

@@ -1,13 +1,30 @@
 import datetime
 import time
 
+def get_week(weeks_from_current=0):
+    """Summary
+    Args:
+        weeks_from_current (int): Get which week form current 0 = current
+    Returns:
+        dict: {"week_number": int, "dates": {"Monday": date_string}}
+    """
+    current_week = get_current_week_number()
+    current_week = current_week + weeks_from_current
+    dates = calculate_dates_of_week(current_week)
+    
+    weekDays = ("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+    zipObj = zip(weekDays, dates)
+    weekDict = dict(zipObj)
+
+    return {"week_number": current_week, "dates": weekDict}
+
 def get_current_week_number():
     """Summary
     Returns:
         int: Gets the current week number
     """
-    weekNumber = datetime.date.today().isocalendar()[1]
-    return weekNumber
+    week_number = datetime.date.today().isocalendar()[1]
+    return week_number
 
 def calculate_dates_of_week(week_number, year = 0):
     """Summary
@@ -40,6 +57,7 @@ def _calculate_all_dates_of_week(start_date):
 
     return dates 
 
-
 def __private():
     return "1"
+
+print(get_week())

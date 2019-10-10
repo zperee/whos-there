@@ -23,7 +23,7 @@
         </ul>          
         {% else %}
           <h2>No week added yet</h2>
-          <button type="button" class="btn btn-success btn-lg mx-auto mt-3">Add Week now</button>
+          <a class="btn btn-success btn-lg mx-auto mt-3" href="{{ url_for('add_week') }}" role="button">Add week now</a>
         {% endif %}
     </div>
   </div>
