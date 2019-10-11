@@ -1,0 +1,56 @@
+import datetime
+import time
+
+def validate_week_input(year, week_number):
+    valid = False
+    if ((week_number and week_number.isdigit()) and (int(week_number) >= 0 and int(week_number) <= 52)):
+        if ((year and year.isdigit()) and (int(year) >= 1970 and int(year) <= 2100)):
+            valid = True
+
+    return valid
+
+def get_current_week_number():
+    """Summary
+    Returns:
+        int: Gets the current week number
+    """
+    week_number = datetime.date.today().isocalendar()[1]
+    return week_number
+
+def get_current_year():
+    """Summary
+    Returns:
+        int: Gets the current year
+    """  
+    now = datetime.datetime.now()
+    return now.year
+
+def calculate_dates_of_week(year, week_number):
+    """Summary
+    Args:
+        week_number (int): Not corrected number of week, first week = 0
+        year (int): Year of weeknumber - default current year
+    Returns:
+        List: A list of all dates that are in a entered week
+    """
+    first_date = _calculate_first_date_of_week(year, week_number)
+    all_dates_of_week = _calculate_all_dates_of_week(first_date)
+    return all_dates_of_week
+
+# Private definitions
+def _calculate_first_date_of_week(year, week_number):
+    if(validate_week_input(year, week_number)):
+        year = int(year)
+        week_number = int(week_number)
+    week_string = '%s-W%s' % (year,week_number - 1) #Counting of weeks starts with 0
+    first_day = time.asctime(time.strptime(week_string + '-1', "%Y-W%W-%w")) # -1 = Monday
+    return first_day
+
+def _calculate_all_dates_of_week(start_date):
+    start_date = datetime.datetime.strptime(start_date, '%a %b %d %H:%M:%S %Y') 
+    dates = [start_date.strftime('%d.%m.%Y')] 
+    for i in range(1, 7): 
+        day = start_date + datetime.timedelta(days=i)
+        dates.append(day.strftime('%d.%m.%Y'))
+
+    return dates 
