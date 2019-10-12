@@ -10,10 +10,12 @@
     <!-- Import our custom stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 
+    <script src="https://kit.fontawesome.com/187e24252e.js" crossorigin="anonymous"></script>
+
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-
+    {% include "navigation_template.html" %}
     <main>
         {% block main %}{% endblock %}
     </main>
