@@ -10,7 +10,7 @@
                 <a class="nav-link" href="{{ url_for('show_week') }}">Show current week</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="{{ url_for('edit_week') }}" id="navbarDropdownMenuLink" role="button"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Add week
                 </a>
@@ -20,6 +20,20 @@
                     <a class="dropdown-item" href="{{ url_for('add_week') }}2">Add week after next</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ url_for('edit_week') }}" id="navbarDropdownMenuLink2" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <!--ToDo dynamic loading of names-->
+                        <a class="dropdown-item" href="{{ url_for('vote') }}patrick">Patrick</a>
+                        <a class="dropdown-item" href="{{ url_for('vote') }}silvia">Silvia</a>
+                        <a class="dropdown-item" href="{{ url_for('vote') }}giulia">Giulia</a>
+                        <a class="dropdown-item" href="{{ url_for('vote') }}amelia">Amelia</a>
+                        <a class="dropdown-item" href="{{ url_for('vote') }}elia">Elia</a>
+                    </div>
+                </li>
         </ul>
     </div>
 </nav>
