@@ -46,6 +46,7 @@
           {% else %}
           <div class="tab-pane fade" id="{{ day.get('id') }}" role="tabpanel" aria-labelledby="{{ day.get('id') }}-tab">
             {% endif %}
+            {% if day['menu'] != '' %}
             <div class="row">
               <div class="col-12 mt-4">
                 <h3 class="mb-3">{{day['menu']}}</h3>
@@ -77,6 +78,13 @@
                 </table>
               </div>
             </div>
+            {% else %}
+            <div class="row">
+                <div class="col-12 mt-5 text-center">
+                  <h3>No menu set for this day</h3>
+                </div>
+            </div>
+            {% endif %}
           </div>
           {% endfor %}
         </div>
