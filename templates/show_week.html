@@ -1,0 +1,83 @@
+{% extends "public_template.html" %}
+
+{% block title %}Who's there{% endblock %}
+
+{% block main %}
+
+<div class="container mt-5">
+  <div class="row">
+    {% if week %}
+    <div class="col-6">
+      <h1>Who's there</h1>
+      <h6 class="font-weight-light">Year {{week['year']}} – Week {{week['week_number']}}</h6>
+    </div>
+    <div class="col-6 mt-5 text-right">
+      <a class="btn btn-primary" href="{{ url_for('edit_week') }}{{ week['year'] }}/{{ week['week_number'] }}"
+        role="button">Edit week</a>
+    </div>
+    {% else %}
+    <div class="col">
+      <h1>Who's there</h1>
+      <hr>
+    </div>
+    {% endif %}
+  </div>
+  <div class="row">
+    {% if week %}
+    <div class="col mt-2">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          {% for day in week['days'] %}
+          <a class="nav-item nav-link" id="{{ day.get('id') }}-tab" data-toggle="tab" href="#{{ day.get('id') }}"
+            role="tab" aria-controls="{{ day.get('id') }}">{{ day.get('day_name') }}</a>
+          {% endfor %}
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        {% for day in week['days'] %}
+        <div class="tab-pane fade" id="{{ day.get('id') }}" role="tabpanel" aria-labelledby="{{ day.get('id') }}-tab">
+          <div class="row">
+            <div class="col-12 mt-4">
+              <h3 class="mb-3">{{day['menu']}}</h3>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <img
+                src="https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder-736x414.jpg"
+                class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col-6">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Attending</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for name, attends in day['attending'].items() %}
+                  <tr>
+                    <th scope="row">{{name.capitalize()}}</th>
+                    <td>{% if attends%}<i class="fas fa-check"></i>{% else %}<i class="fas fa-times"></i>{% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <div class="col mt-5 text-center">
+      <h2>Week not added yet</h2>
+      <a class="btn btn-success btn-lg mx-auto mt-3" href="{{ url_for('add_week') }}" role="button">Add week now</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

@@ -18,7 +18,7 @@
                     {% for day in week['days'] %}
                     <a class="nav-item nav-link" id="{{ day.get('id') }}-tab" data-toggle="tab"
                         href="#{{ day.get('id') }}" role="tab"
-                        aria-controls="{{ day.get('id') }}">{{ day.get('date') }}</a>
+                        aria-controls="{{ day.get('id') }}">{{ day.get('day_name') }}</a>
                     {% endfor %}
                 </div>
             </nav>
