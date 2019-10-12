@@ -19,7 +19,7 @@ def create_new_week(year, week_number):
     }
 
     dates = week_date_helper.calculate_dates_of_week(year, week_number)
-    id = 0
+    id = 1
     # ToDo load attending dynamic from config
     for date in dates:
         week_data['days'].append({
@@ -29,11 +29,11 @@ def create_new_week(year, week_number):
             'image': '',
             'time': '',
             'attending': {
-                'elia': False,
-                'amelia': False,
-                'giulia': False,
-                'silvia': False,
-                'patrick': False,
+                'patrick': None,
+                'silvia': None,
+                'giulia': None,
+                'amelia': None,
+                'elia': None,
             }
         })
         id += 1

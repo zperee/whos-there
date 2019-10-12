@@ -16,49 +16,48 @@
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     {% for day in week['days'] %}
-                    {% if loop.index == 1 %}
-                    <a class="nav-item nav-link active" id="{{ day.get('id') }}-tab" data-toggle="tab"
-                        href="#{{ day.get('id') }}" role="tab" aria-controls="{{ day.get('id') }}"
-                        aria-selected="true">{{ day.get('day_name') }}</a>
-                    {% else %}
                     <a class="nav-item nav-link" id="{{ day.get('id') }}-tab" data-toggle="tab"
                         href="#{{ day.get('id') }}" role="tab" aria-controls="{{ day.get('id') }}"
                         aria-selected="false">{{ day.get('day_name') }}</a>
-                    {% endif %}
                     {% endfor %}
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 {% for day in week['days'] %}
-                {% if loop.index == 1 %}
-                <div class="tab-pane fade active show" id="{{ day.get('id') }}" role="tabpanel"
+                <div class="tab-pane fade" id="{{ day.get('id') }}" role="tabpanel"
                     aria-labelledby="{{ day.get('id') }}-tab">
-                    {% else %}
-                    <div class="tab-pane fade" id="{{ day.get('id') }}" role="tabpanel"
-                        aria-labelledby="{{ day.get('id') }}-tab">
-                        {% endif %}
-                        <div class="col-6 offset-3 text-center mt-5">
-                            <h3>{{day.get('date')}}</h3>
-                        </div>
-                        <div class="col-6 offset-3 mt-3">
-                            <form method="POST">
-                                <div class="form-group">
-                                    <input type="text" id="menu" name="{{day.get('id')}}_menu" class="form-control"
-                                        placeholder="Menu" value="{{day.get('menu')}}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" id="time" name="{{day.get('id')}}_time" class="form-control"
-                                        placeholder="Time" value="{{day.get('time')}}">
-                                </div>
-                                <div class="text-right mt-3">
-                                    <button type="submit" class="btn btn-secondary">Save</button>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="col-6 offset-3 text-center mt-5">
+                        <h3>{{day.get('date')}}</h3>
                     </div>
-                    {% endfor %}
+                    <div class="col-6 offset-3 mt-3">
+                        <form method="POST">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-utensils"></i></div>
+                                </div>
+                                <input type="text" id="menu" name="{{day.get('id')}}_menu" class="form-control"
+                                    placeholder="Menu" value="{{day.get('menu')}}">
+                            </div>
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-clock"></i></div>
+                                </div>
+                                <input type="text" id="time" name="{{day.get('id')}}_time" class="form-control"
+                                    placeholder="Time" value="{{day.get('time')}}">
+                            </div>
+                            <div class="text-right mt-3">
+                                <button type="submit" class="btn btn-secondary">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
+    </div>
 
-        {% endblock %}
+    {% endblock %}
+
+    {% block script %}
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    {% endblock %}

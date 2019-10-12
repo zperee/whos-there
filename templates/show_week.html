@@ -5,6 +5,14 @@
 {% block main %}
 
 <div class="container mt-5">
+    <!--<div class="row justify-content-around">
+      <div class="col-6">
+        <a href="{{ url_for('show_week') }}previous"><i class="fas fa-arrow-left"></i></a>
+      </div>
+      <div class="col-6 text-right">
+          <a href="{{ url_for('show_week') }}next"><i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>-->
   <div class="row">
     {% if week %}
     <div class="col-6">
@@ -13,7 +21,7 @@
     </div>
     <div class="col-6 mt-5 text-right">
       <a class="btn btn-primary" href="{{ url_for('edit_week') }}{{ week['year'] }}/{{ week['week_number'] }}"
-        role="button">Edit week</a>
+        role="button">Edit <i class="far fa-edit"></i></a>
     </div>
     {% else %}
     <div class="col">
@@ -28,74 +36,69 @@
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           {% for day in week['days'] %}
-          {% if loop.index == 1 %}
-          <a class="nav-item nav-link active" id="{{ day.get('id') }}-tab" data-toggle="tab" href="#{{ day.get('id') }}"
-            role="tab" aria-controls="{{ day.get('id') }}" aria-selected="true">{{ day.get('day_name') }}</a>
-          {% else %}
           <a class="nav-item nav-link" id="{{ day.get('id') }}-tab" data-toggle="tab" href="#{{ day.get('id') }}"
             role="tab" aria-controls="{{ day.get('id') }}" aria-selected="false">{{ day.get('day_name') }}</a>
-          {% endif %}
           {% endfor %}
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
         {% for day in week['days'] %}
-        {% if loop.index == 1 %}
-        <div class="tab-pane fade active show" id="{{ day.get('id') }}" role="tabpanel"
-          aria-labelledby="{{ day.get('id') }}-tab">
-          {% else %}
-          <div class="tab-pane fade" id="{{ day.get('id') }}" role="tabpanel" aria-labelledby="{{ day.get('id') }}-tab">
-            {% endif %}
-            {% if day['menu'] != '' %}
-            <div class="row">
-              <div class="col-12 mt-4">
-                <h3 class="mb-3">{{day['menu']}}</h3>
-              </div>
+        <div class="tab-pane fade" id="{{ day.get('id') }}" role="tabpanel" aria-labelledby="{{ day.get('id') }}-tab">
+          {% if day['menu'] != '' %}
+          <div class="row">
+            <div class="col-12 mt-4">
+              <h3 class="mb-3">{{day['menu']}}</h3>
+              <h6 class="font-weight-light">{{day['date']}}</h6>
             </div>
-            <div class="row mt-3">
-              <div class="col-6">
-                <img
-                  src="https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder-736x414.jpg"
-                  class="img-fluid" alt="Responsive image">
-              </div>
-              <div class="col-6">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Attending</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for name, attends in day['attending'].items() %}
-                    <tr>
-                      <th scope="row">{{name.capitalize()}}</th>
-                      <td>{% if attends%}<i class="fas fa-check"></i>{% else %}<i class="fas fa-times"></i>{% endif %}
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            {% else %}
-            <div class="row">
-                <div class="col-12 mt-5 text-center">
-                  <h3>No menu set for this day</h3>
-                </div>
-            </div>
-            {% endif %}
           </div>
-          {% endfor %}
+          <div class="row mt-3">
+            <div class="col-6">
+              <img
+                src="https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder-736x414.jpg"
+                class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col-6">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Attending</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for name, attends in day['attending'].items() %}
+                  <tr>
+                    <th scope="row">{{name.capitalize()}}</th>
+                    <td>{% if attends%}<i class="fas fa-check"></i>{% elif attends == false %}<i class="fas fa-times"></i>{% else %}{% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% else %}
+          <div class="row">
+            <div class="col-12 mt-5 text-center">
+              <h3>No menu set for this day</h3>
+            </div>
+          </div>
+          {% endif %}
         </div>
+        {% endfor %}
       </div>
-      {% else %}
-      <div class="col mt-5 text-center">
-        <h2>Week not added yet</h2>
-        <a class="btn btn-success btn-lg mx-auto mt-3" href="{{ url_for('add_week') }}" role="button">Add week now</a>
-      </div>
-      {% endif %}
     </div>
+    {% else %}
+    <div class="col mt-5 text-center">
+      <h2>Week not added yet</h2>
+      <a class="btn btn-success btn-lg mx-auto mt-3" href="{{ url_for('add_week') }}" role="button">Add week now</a>
+    </div>
+    {% endif %}
   </div>
+</div>
 
-  {% endblock %}
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+{% endblock %}
