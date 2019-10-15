@@ -22,9 +22,14 @@ Skizze des Dashboards auf welchem die aktuelle Woche angezeigt wird.
 
 ## Workflow
 ### Dateneingabe
-Um eine neue Woche hinzuzufügen wird über das Webinterface die entsprechende Seite aufgerufen. In dem UI kann der Benutzer über eine Eingabemaske jeweils pro Wochentag den Titel der Mahlzeit definieren. Die Eingabe wird nach der übergabe validiert und bei erfolgreicher Validation in einem File auf dem System gespeichert.
+Um eine neue Woche hinzuzufügen wird über das Webinterface die entsprechende Seite aufgerufen. In dem UI kann der Benutzer über eine Eingabemaske jeweils pro Wochentag den Titel der Mahlzeit definieren. Die Eingabe wird in einem File auf dem System gespeichert, sodass es für die Übersicht wieder aufgerufen werden kann.
 
-![add_new_week](doku/add_new_week.png)
 ### Datenverarbeitung/Speicherung
-### Datenausgabe
 
+### Datenausgabe
+1. Zuerst wird überprüft ob valide Parameter in der URL übergeben worden sind. Zum Beispiel `/2019/42` für die 42. Woche im Jahr 2019.
+2. Falls keine gültigen Parameter eingegeben wurden, wird die aktuelle Kalenderwoche ermittelt und auf diese Seite redirected.
+3. Als nächstes wird überprüft ob bereits ein Wochenplan für diese Woche erstellt worden ist. 
+4. Falls dies nicht der Fall ist wird eine leere Woche erstellt.
+5. Zum Schluss wird die Seite mit den entsprechenden Daten geladen.
+![add_new_week](doku/show_week.png)

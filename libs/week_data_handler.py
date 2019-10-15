@@ -2,6 +2,14 @@ from . import data_helper
 from . import week_date_helper
 
 def load_week(data_path, year, week_number):
+    """Summary
+    Args:
+        data_path (String): Folder where data is stored
+        year (String): 
+        week_number (String):  Corrected number of week, first week = 1
+    Returns:
+        week_data: Loads a week from file, if file does not exists creates empty week
+    """
     file_path = get_file_name(data_path, year, week_number)
     
     if (data_helper.file_exists(file_path)):
@@ -12,6 +20,13 @@ def load_week(data_path, year, week_number):
     return week_data
 
 def create_new_week(year, week_number):
+    """Summary
+    Args:
+        year (int): Year of weeknumber
+        week_number (int):  Corrected number of week, first week = 1
+    Returns:
+        week_data: Returns a new week data structure
+    """
     week_data = {
         'week_number': week_number,
         'year': year,
@@ -40,6 +55,15 @@ def create_new_week(year, week_number):
     return week_data
 
 def update_week(data_path, request_form, year, week_number):
+    """Summary
+    Args:
+        data_path (String): Folder where data is stored
+        request_form (): Form from the UI
+        year (int): Year of weeknumber
+        week_number (int):  Corrected number of week, first week = 1
+    Returns:
+        week_data: Returns the updated week data structure
+    """
     file_path = get_file_name(data_path, year, week_number)
     week_data = load_week(data_path, year, week_number)
 
@@ -57,4 +81,12 @@ def update_week(data_path, request_form, year, week_number):
     return week_data
 
 def get_file_name(data_path, year, week_number):
+    """Summary
+    Args:
+        data_path (String): Folder where data is stored
+        year (String): Year of weeknumber
+        week_number (String):  Corrected number of week, first week = 1
+    Returns:
+        String: Returns the file path to a week file
+    """
     return '%s%s%s%s%s' % (data_path, year, '_', week_number, '.txt')

@@ -2,6 +2,13 @@ import datetime
 import time
 
 def validate_week_input(year, week_number):
+    """Summary
+    Args:
+        year (String): Year of weeknumber
+        week_number (String):  Corrected number of week, first week = 1
+    Returns:
+        boolean: Returns if the data input is valid
+    """
     valid = False
     if ((week_number and week_number.isdigit()) and (int(week_number) >= 0 and int(week_number) <= 52)):
         if ((year and year.isdigit()) and (int(year) >= 1970 and int(year) <= 2100)):
@@ -28,8 +35,8 @@ def get_current_year():
 def calculate_dates_of_week(year, week_number):
     """Summary
     Args:
-        week_number (int): Not corrected number of week, first week = 0
-        year (int): Year of weeknumber - default current year
+        year (int): Year of weeknumber
+        week_number (int): Corrected number of week, first week = 1
     Returns:
         List: A list of all dates that are in a entered week
     """
