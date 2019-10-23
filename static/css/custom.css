@@ -15,3 +15,7 @@ footer {
   background-color: #343a40;
   color:#fff;
 }
+
+.card-vote {
+  min-height: 150px !important
+}

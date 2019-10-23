@@ -81,7 +81,7 @@ def show_week(year=None, week_number=None):
 @app.route("/vote/")
 @app.route("/vote/<person>")
 def vote(person=None):
-    return person
+    return render_template("vote.html")
 
 def add_days_name_to_date(week_data):
     counter = 0

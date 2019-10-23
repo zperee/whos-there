@@ -1,0 +1,109 @@
+{% extends "public_template.html" %}
+
+{% block title %}Who's there{% endblock %}
+
+{% block main %}
+
+<div class="container mt-5">
+    <h1>Hello Patrick{{ name }}</h1>
+    <h3>When are you eating at home?</h3>
+    <hr>
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-8 offset-2 offset-sm-0 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Monday</h5>
+                    <h6 class="card-subtitle mb-2 text-center">Raclette</h6>
+                    <p class="text-muted text-center">18:30</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                        <a href="#" class="btn btn-success float-right"><i class="fas fa-check"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-8 offset-2 offset-sm-0 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Tuesday</h5>
+                    <h6 class="card-subtitle mb-2 text-center">Raclette</h6>
+                    <p class="text-muted text-center">18:30</p>
+                    <div class="mt-4  text-center">
+                        <h3><i class="fas fa-times text-danger"></i></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-8 offset-2 offset-sm-0 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Wednesday</h5>
+                    <h6 class="card-subtitle mb-2 text-center">Raclette</h6>
+                    <p class="text-muted text-center">18:30</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                        <a href="#" class="btn btn-success float-right"><i class="fas fa-check"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-8 offset-2 offset-sm-0 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Thursday</h5>
+                    <h6 class="card-subtitle mb-2 text-center">Raclette</h6>
+                    <p class="text-muted text-center">18:30</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                        <a href="#" class="btn btn-success float-right"><i class="fas fa-check"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-8 offset-2 offset-sm-0 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Friday</h5>
+                    <h6 class="card-subtitle mb-2 text-center">Raclette</h6>
+                    <p class="text-muted text-center">18:30</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                        <a href="#" class="btn btn-success float-right"><i class="fas fa-check"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-8 offset-2 offset-sm-0 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Saturday</h5>
+                    <h6 class="card-subtitle mb-2 text-center">Raclette</h6>
+                    <p class="text-muted text-center">18:30</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                        <a href="#" class="btn btn-success float-right"><i class="fas fa-check"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-8 offset-2 offset-sm-0 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Sunday</h5>
+                    <h6 class="card-subtitle mb-2 text-center">Raclette</h6>
+                    <p class="text-muted text-center">18:30</p>
+                    <div class="mt-4">
+                        <a href="#" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                        <a href="#" class="btn btn-success float-right"><i class="fas fa-check"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+{% endblock %}
