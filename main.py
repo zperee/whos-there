@@ -8,6 +8,7 @@ from flask import redirect
 from libs import week_date_helper
 from libs import week_data_handler
 from libs import data_helper
+from libs import person_data_handler
 
 app = Flask("Who's there")
 
@@ -65,16 +66,33 @@ def show_week(year=None, week_number=None):
     week_data = {}
     week_data = week_data_handler.load_week(year, week_number)
 
-    print(week_data)
     week_data = add_days_name_to_date(week_data)
     return render_template("show_week.html", week=week_data)
 
-@app.route("/vote/")
 @app.route("/vote/<person>")
-@app.route("/vote/<year>/<week_number>/<person>")
-def vote(person=None):
+@app.route("/vote/<person>/<year>/<week_number>")
+def vote(year=None, week_number=None, person=None):
+    valid_url_input = week_date_helper.validate_week_input(year, week_number)
+ 
+    if(not valid_url_input):
+        year = str(week_date_helper.get_current_year())
+        week_number = str(week_date_helper.get_current_week_number())
+        url = '%s%s%s%s%s%s' % ('/vote/', person , '/',year, '/', week_number)
+        return redirect(url)
     
-    return render_template("vote.html", name=person.capitalize())
+    week_data = {}
+    week_data = week_data_handler.load_week(year, week_number)
+
+    week_data = add_days_name_to_date(week_data)
+    return render_template("vote.html", week=week_data, name=person.capitalize())
+
+@app.route("/vote/yes/<date>/<person>")
+def vote_yes(date, person):
+    person_data_handler.vote(True, date, person)
+
+@app.route("/vote/no/<date>/<person>")
+def vote_no(date, person):
+    person_data_handler.vote(False, date, person)
 
 def add_days_name_to_date(week_data):
     counter = 0
