@@ -1,8 +1,5 @@
 import datetime
 
-import os
-from pathlib import Path
-
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -13,10 +10,6 @@ from libs import week_data_handler
 from libs import data_helper
 
 app = Flask("Who's there")
-
-app_main_path = Path(os.path.abspath(
-    "/".join(os.path.realpath(__file__).split("/")[:-1])))
-data_path = Path(os.path.abspath(app_main_path/'../week/'))
 
 week_days = ("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
 
@@ -51,9 +44,9 @@ def edit_week(year=None, week_number=None):
         return redirect(url)
     
     if request.method == 'POST':
-        week_data = week_data_handler.update_week(data_path, request.form, year, week_number)
+        week_data = week_data_handler.update_week(request.form, year, week_number)
     else:    
-        week_data = week_data_handler.load_week(data_path, year, week_number)
+        week_data = week_data_handler.load_week(year, week_number)
 
     week_data = add_days_name_to_date(week_data)
     return render_template("add_week.html", week=week_data)
@@ -69,19 +62,19 @@ def show_week(year=None, week_number=None):
         url = '%s%s%s%s' % ('/week/show/', year, '/', week_number)
         return redirect(url)
     
-    file_name = week_data_handler.get_file_name(data_path, year, week_number)
     week_data = {}
-    
-    if(data_helper.file_exists(file_name)):
-        week_data = week_data_handler.load_week(data_path, year, week_number)
+    week_data = week_data_handler.load_week(year, week_number)
 
+    print(week_data)
     week_data = add_days_name_to_date(week_data)
     return render_template("show_week.html", week=week_data)
 
 @app.route("/vote/")
 @app.route("/vote/<person>")
+@app.route("/vote/<year>/<week_number>/<person>")
 def vote(person=None):
-    return render_template("vote.html")
+    
+    return render_template("vote.html", name=person.capitalize())
 
 def add_days_name_to_date(week_data):
     counter = 0

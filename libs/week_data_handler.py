@@ -1,7 +1,7 @@
 from . import data_helper
 from . import week_date_helper
-
-def load_week(data_path, year, week_number):
+from . import config
+def load_week(year, week_number):
     """Summary
     Args:
         data_path (String): Folder where data is stored
@@ -10,7 +10,7 @@ def load_week(data_path, year, week_number):
     Returns:
         week_data: Loads a week from file, if file does not exists creates empty week
     """
-    file_path = get_file_name(data_path, year, week_number)
+    file_path = get_file_path(year, week_number)
     
     if (data_helper.file_exists(file_path)):
         week_data = data_helper.load_json(file_path)
@@ -54,7 +54,7 @@ def create_new_week(year, week_number):
         id += 1
     return week_data
 
-def update_week(data_path, request_form, year, week_number):
+def update_week(request_form, year, week_number):
     """Summary
     Args:
         data_path (String): Folder where data is stored
@@ -64,8 +64,7 @@ def update_week(data_path, request_form, year, week_number):
     Returns:
         week_data: Returns the updated week data structure
     """
-    file_path = get_file_name(data_path, year, week_number)
-    week_data = load_week(data_path, year, week_number)
+    week_data = load_week(year, week_number)
 
     form_request = request_form.to_dict()
     day_name = list(form_request)[0].split('_')
@@ -76,11 +75,12 @@ def update_week(data_path, request_form, year, week_number):
         day[key] = value
 
     print(week_data)
-    data_helper.save_json(file_path, week_data)
+    data_path = get_file_path(year, week_number)
+    data_helper.save_json(data_path, week_data)
 
     return week_data
 
-def get_file_name(data_path, year, week_number):
+def get_file_path(year, week_number):
     """Summary
     Args:
         data_path (String): Folder where data is stored
@@ -89,4 +89,4 @@ def get_file_name(data_path, year, week_number):
     Returns:
         String: Returns the file path to a week file
     """
-    return '%s%s%s%s%s' % (data_path, year, '_', week_number, '.txt')
+    return '%s%s%s%s%s%s' % (config.data_path, '/' , year, '_', week_number, '.txt')
