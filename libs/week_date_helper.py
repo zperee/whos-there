@@ -32,6 +32,16 @@ def get_current_year():
     now = datetime.datetime.now()
     return now.year
 
+def calculate_week_from_date(date):
+    """Summary
+    Args:
+        date (): Date
+    Returns:
+        week_number: Week number of the date
+    """
+    week = date.isocalendar()[:2]
+    return week
+
 def calculate_dates_of_week(year, week_number):
     """Summary
     Args:

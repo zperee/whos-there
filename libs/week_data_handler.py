@@ -1,6 +1,7 @@
 from . import data_helper
 from . import week_date_helper
 from . import config
+
 def load_week(year, week_number):
     """Summary
     Args:

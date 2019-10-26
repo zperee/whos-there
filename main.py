@@ -89,10 +89,12 @@ def vote(year=None, week_number=None, person=None):
 @app.route("/vote/yes/<date>/<person>")
 def vote_yes(date, person):
     person_data_handler.vote(True, date, person)
+    return redirect(request.referrer)
 
 @app.route("/vote/no/<date>/<person>")
 def vote_no(date, person):
     person_data_handler.vote(False, date, person)
+    return redirect(request.referrer)
 
 def add_days_name_to_date(week_data):
     counter = 0

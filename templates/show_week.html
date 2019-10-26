@@ -69,7 +69,7 @@
                   {% for name, attends in day['attending'].items() %}
                   <tr>
                     <th scope="row">{{name.capitalize()}}</th>
-                    <td>{% if attends%}<i class="fas fa-check"></i>{% elif attends == false %}<i class="fas fa-times"></i>{% else %}{% endif %}
+                    <td>{% if attends %}<i class="fas fa-check"></i>{% elif attends == false %}<i class="fas fa-times"></i>{% else %}{% endif %}
                     </td>
                   </tr>
                   {% endfor %}
