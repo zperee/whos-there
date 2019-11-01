@@ -14,7 +14,7 @@
       </div>
     </div>-->
   <div class="row">
-    {% if week %}
+    {% if not week.new_week %}
     <div class="col-6">
       <h1>Who's there</h1>
       <h6 class="font-weight-light">Year {{week['year']}} – Week {{week['week_number']}}</h6>
@@ -31,7 +31,7 @@
     {% endif %}
   </div>
   <div class="row">
-    {% if week %}
+    {% if not week.new_week %}
     <div class="col mt-2">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -90,8 +90,9 @@
     </div>
     {% else %}
     <div class="col mt-5 text-center">
-      <h2>Week not added yet</h2>
-      <a class="btn btn-success btn-lg mx-auto mt-3" href="{{ url_for('add_week') }}" role="button">Add week now</a>
+      <h2>Week {{week.week_number}} not added yet</h2>
+      <h6>{{week.days[0].date}} - {{week.days[6].date}}</h6>
+      <a class="btn btn-success btn-lg mx-auto mt-3" href="{{ url_for('edit_week', year=week.year, week_number=week.week_number) }}" role="button">Add week now</a>
     </div>
     {% endif %}
   </div>

@@ -29,6 +29,7 @@ def create_new_week(year, week_number):
         week_data: Returns a new week data structure
     """
     week_data = {
+        'new_week': True,
         'week_number': week_number,
         'year': year,
         'days': []
@@ -75,7 +76,8 @@ def update_week(request_form, year, week_number):
         key = key.split('_')[1]
         day[key] = value
 
-    print(week_data)
+    week_data['new_week'] = False
+
     data_path = get_file_path(year, week_number)
     data_helper.save_json(data_path, week_data)
 

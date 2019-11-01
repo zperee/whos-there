@@ -66,6 +66,7 @@ def show_week(year=None, week_number=None):
     week_data = {}
     week_data = week_data_handler.load_week(year, week_number)
 
+    print(week_data)
     week_data = add_days_name_to_date(week_data)
     return render_template("show_week.html", week=week_data)
 
