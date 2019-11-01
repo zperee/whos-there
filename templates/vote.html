@@ -26,11 +26,11 @@
                             class="btn btn-success float-right"><i class="fas fa-check"></i></a>
                     </div>
                     {% else %}
-                    <div class="mt-4  text-center">
+                    <div class="mt-4 text-center">
                         {% if day['attending'][name.lower()] == True %}
-                        <h3><i class="fas fa-check text-success"></i></h3>
+                        <h3><a href="{{url_for('vote_no', date = day.get('date').replace('.', ''), person = name)}}"><i class="fas fa-check text-success"></i></a></h3>
                         {% elif day['attending'][name.lower()] == False %}
-                        <h3><i class="fas fa-times text-danger"></i></h3>
+                        <h3><a href="{{url_for('vote_yes', date = day.get('date').replace('.', ''), person = name)}}"><i class="fas fa-times text-danger"></i></a></h3>
                         {% endif %}
                     </div>
                     {% endif %}
