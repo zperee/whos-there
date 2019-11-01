@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
-app_main_path = Path(os.path.abspath("/".join(os.path.realpath(__file__).split("/")[:-1])))
-data_path = Path(os.path.abspath(app_main_path/'../week_data/'))
+APP_MAIN_PATH = Path(os.path.abspath("/".join(os.path.realpath(__file__).split("/")[:-1])))
+DATA_PATH = Path(os.path.abspath(APP_MAIN_PATH/'../data/week_data/'))
 
+UPLOAD_FOLDER = Path(os.path.abspath(APP_MAIN_PATH/'../static/menu_images/'))
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])

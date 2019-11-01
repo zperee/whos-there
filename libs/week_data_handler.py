@@ -56,7 +56,7 @@ def create_new_week(year, week_number):
         id += 1
     return week_data
 
-def update_week(request_form, year, week_number):
+def update_week(request, year, week_number):
     """Summary
     Args:
         data_path (String): Folder where data is stored
@@ -67,8 +67,8 @@ def update_week(request_form, year, week_number):
         week_data: Returns the updated week data structure
     """
     week_data = load_week(year, week_number)
-
-    form_request = request_form.to_dict()
+    print(request.form)
+    form_request = request.form.to_dict()
     day_name = list(form_request)[0].split('_')
     day = next((x for x in week_data['days'] if x.get('id') == day_name[0]), None)
 
@@ -76,6 +76,8 @@ def update_week(request_form, year, week_number):
         key = key.split('_')[1]
         day[key] = value
 
+    file_name = data_helper.upload_image(request)
+    day['image'] = file_name
     week_data['new_week'] = False
 
     data_path = get_file_path(year, week_number)
@@ -92,4 +94,4 @@ def get_file_path(year, week_number):
     Returns:
         String: Returns the file path to a week file
     """
-    return '%s%s%s%s%s%s' % (config.data_path, '/' , year, '_', week_number, '.txt')
+    return '%s%s%s%s%s%s' % (config.DATA_PATH, '/' , year, '_', week_number, '.txt')
