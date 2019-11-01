@@ -43,7 +43,6 @@ def create_new_week(year, week_number):
             'id': "day" + str(id),
             'date': date,
             'menu': '',
-            'image': '',
             'time': '',
             'attending': {
                 'patrick': None,
@@ -67,7 +66,6 @@ def update_week(request, year, week_number):
         week_data: Returns the updated week data structure
     """
     week_data = load_week(year, week_number)
-    print(request.form)
     form_request = request.form.to_dict()
     day_name = list(form_request)[0].split('_')
     day = next((x for x in week_data['days'] if x.get('id') == day_name[0]), None)
@@ -77,7 +75,8 @@ def update_week(request, year, week_number):
         day[key] = value
 
     file_name = data_helper.upload_image(request)
-    day['image'] = file_name
+    if file_name:
+        day['image'] = file_name
     week_data['new_week'] = False
 
     data_path = get_file_path(year, week_number)

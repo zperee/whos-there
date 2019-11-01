@@ -45,7 +45,7 @@ def edit_week(year=None, week_number=None):
         return redirect(url)
     
     if request.method == 'POST':
-        week_data = week_data_handler.update_week(request.form, year, week_number)
+        week_data = week_data_handler.update_week(request, year, week_number)
     else:    
         week_data = week_data_handler.load_week(year, week_number)
 
