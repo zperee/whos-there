@@ -1,5 +1,6 @@
-from . import data_helper
-from . import week_date_helper
+from . import file_helper
+from . import week_handler
+from . import date_helper
 from . import config
 
 def load_week(year, week_number):
@@ -13,11 +14,12 @@ def load_week(year, week_number):
     """
     file_path = get_file_path(year, week_number)
     
-    if (data_helper.file_exists(file_path)):
-        week_data = data_helper.load_json(file_path)
+    if (file_helper.file_exists(file_path)):
+        week_data = file_helper.load_json(file_path)
     else:
         week_data = create_new_week(year, week_number)
 
+    week_data = add_days_name_to_date(week_data)
     return week_data
 
 def create_new_week(year, week_number):
@@ -35,7 +37,7 @@ def create_new_week(year, week_number):
         'days': []
     }
 
-    dates = week_date_helper.calculate_dates_of_week(year, week_number)
+    dates = date_helper.calculate_dates_of_week(year, week_number)
     id = 1
     # ToDo load attending dynamic from config
     for date in dates:
@@ -74,13 +76,13 @@ def update_week(request, year, week_number):
         key = key.split('_')[1]
         day[key] = value
 
-    file_name = data_helper.upload_image(request)
+    file_name = file_helper.upload_image(request)
     if file_name:
         day['image'] = file_name
     week_data['new_week'] = False
 
     data_path = get_file_path(year, week_number)
-    data_helper.save_json(data_path, week_data)
+    file_helper.save_json(data_path, week_data)
 
     return week_data
 
@@ -94,3 +96,12 @@ def get_file_path(year, week_number):
         String: Returns the file path to a week file
     """
     return '%s%s%s%s%s%s' % (config.DATA_PATH, '/' , year, '_', week_number, '.txt')
+
+
+def add_days_name_to_date(week_data):
+    counter = 0
+    if (week_data.get('days')):
+        for day in week_data['days']:
+            day['day_name'] = config.WEEKDAYS_NAME[counter]
+            counter += 1
+    return week_data
