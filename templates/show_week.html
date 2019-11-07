@@ -5,14 +5,6 @@
 {% block main %}
 
 <div class="container mt-5">
-    <!--<div class="row justify-content-around">
-      <div class="col-6">
-        <a href="{{ url_for('show_week') }}previous"><i class="fas fa-arrow-left"></i></a>
-      </div>
-      <div class="col-6 text-right">
-          <a href="{{ url_for('show_week') }}next"><i class="fas fa-arrow-right"></i></a>
-      </div>
-    </div>-->
   <div class="row">
     {% if not week.new_week %}
     <div class="col-6">
@@ -44,11 +36,11 @@
       <div class="tab-content" id="nav-tabContent">
         {% for day in week['days'] %}
         <div class="tab-pane fade" id="{{ day.get('id') }}" role="tabpanel" aria-labelledby="{{ day.get('id') }}-tab">
-          {% if day['menu'] != '' %}
+          {% if day['menu'] %}
           <div class="row">
             <div class="col-12 mt-4">
               <h3 class="mb-3">{{day['menu']}}</h3>
-              <h6 class="font-weight-light">{{day['date']}}</h6>
+              <h6 class="font-weight-light">{{day.get('time')}}</h6>
             </div>
           </div>
           <div class="row mt-3">
@@ -66,7 +58,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for name, attends in day['attending'].items() %}
+                  {% for name, attends in day.get('attending', {}).items() %}
                   <tr>
                     <th scope="row">{{name.capitalize()}}</th>
                     <td>{% if attends %}<i class="fas fa-check"></i>{% elif attends == false %}<i class="fas fa-times"></i>{% else %}{% endif %}

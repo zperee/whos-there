@@ -15,10 +15,10 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">{{day.get('day_name')}}</h5>
-                    {% if day['menu'] != '' %}
+                    {% if day['menu'] %}
                     <h6 class="card-subtitle mb-2 text-center">{{day.get('menu')}}</h6>
                     <p class="text-muted text-center">{{day.get('time')}}</p>
-                    {% if day['attending'][name.lower()] == None %}
+                    {% if day.get('attending', {}).get(name.lower()) == None %}
                     <div class="mt-4">
                         <a href="{{url_for('vote_no', date = day.get('date').replace('.', ''), person = name)}}"
                             class="btn btn-danger"><i class="fas fa-times"></i></a>
@@ -27,9 +27,9 @@
                     </div>
                     {% else %}
                     <div class="mt-4 text-center">
-                        {% if day['attending'][name.lower()] == True %}
+                        {% if day.get('attending')[name.lower()] == True %}
                         <h3><a href="{{url_for('vote_no', date = day.get('date').replace('.', ''), person = name)}}"><i class="fas fa-check text-success"></i></a></h3>
-                        {% elif day['attending'][name.lower()] == False %}
+                        {% elif day.get('attending')[name.lower()] == False %}
                         <h3><a href="{{url_for('vote_yes', date = day.get('date').replace('.', ''), person = name)}}"><i class="fas fa-times text-danger"></i></a></h3>
                         {% endif %}
                     </div>

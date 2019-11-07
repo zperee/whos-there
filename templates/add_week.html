@@ -36,14 +36,14 @@
                                     <div class="input-group-text"><i class="fas fa-utensils"></i></div>
                                 </div>
                                 <input type="text" id="menu" name="{{day.get('id')}}_menu" class="form-control"
-                                    placeholder="Menu" value="{{day.get('menu')}}">
+                                    placeholder="Menu" value="{{day.get('menu', '')}}">
                             </div>
                             <div class="input-group mt-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fas fa-clock"></i></div>
                                 </div>
                                 <input type="text" id="time" name="{{day.get('id')}}_time" class="form-control"
-                                    placeholder="Time" value="{{day.get('time')}}">
+                                    placeholder="Time" value="{{day.get('time', '')}}">
                             </div>
                             <div class="input-group mt-3">
                                 <div class="input-group-prepend">

@@ -19,6 +19,8 @@ def vote(attending, date, person):
 
     for day in week_data['days']:
         if (day.get('date') == date.strftime("%d.%m.%Y")):
-            day['attending'][person.lower()] = attending
-    
+            person_dict = day.get('attending', {})
+            person_dict[person.lower()] = attending
+            day['attending'] = person_dict
+
     file_helper.save_json(week_handler.get_file_path(week[0], week[1]), week_data)

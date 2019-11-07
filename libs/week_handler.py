@@ -44,15 +44,6 @@ def create_new_week(year, week_number):
         week_data['days'].append({
             'id': "day" + str(id),
             'date': date,
-            'menu': '',
-            'time': '',
-            'attending': {
-                'patrick': None,
-                'silvia': None,
-                'giulia': None,
-                'amelia': None,
-                'elia': None,
-            }
         })
         id += 1
     return week_data
