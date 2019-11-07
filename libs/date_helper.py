@@ -32,6 +32,24 @@ def get_current_year():
     now = datetime.datetime.now()
     return now.year
 
+def get_week_number_url(**weeks_from_now):
+    """Summary
+    Args:
+        weeks_from_now (int): Weeks in the future
+    Returns:
+        week_number: Week number in the future
+    """
+    year = get_current_year()
+    week_number = get_current_week_number()
+    
+    if weeks_from_now:
+        week_number += weeks_from_now
+        if week_number > 52:
+            week_number = week_number - 52
+            year += 1
+        
+    return year
+
 def calculate_week_from_date(date):
     """Summary
     Args:
