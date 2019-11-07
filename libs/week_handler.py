@@ -4,11 +4,11 @@ from . import date_helper
 from . import config
 
 def load_week(year, week_number):
-    """Summary
+    """Summary Loads the specified week data, if week not created yet it creates
+    an empty week.
     Args:
-        data_path (String): Folder where data is stored
-        year (String): 
-        week_number (String):  Corrected number of week, first week = 1
+        year (String): Year of of weeknumber
+        week_number (String): Corrected number of week, first week = 1
     Returns:
         week_data: Loads a week from file, if file does not exists creates empty week
     """
@@ -23,7 +23,7 @@ def load_week(year, week_number):
     return week_data
 
 def create_new_week(year, week_number):
-    """Summary
+    """Summary Creates an empty week for the specified week
     Args:
         year (int): Year of weeknumber
         week_number (int):  Corrected number of week, first week = 1
@@ -58,36 +58,36 @@ def create_new_week(year, week_number):
     return week_data
 
 def update_week(request, year, week_number):
-    """Summary
+    """Summary Updates the week with the data from the form
     Args:
-        data_path (String): Folder where data is stored
-        request_form (): Form from the UI
+        request (Request): Form from the UI
         year (int): Year of weeknumber
         week_number (int):  Corrected number of week, first week = 1
     Returns:
         week_data: Returns the updated week data structure
     """
-    week_data = load_week(year, week_number)
-    form_request = request.form.to_dict()
-    day_name = list(form_request)[0].split('_')
+    week_data = load_week(year, week_number) 
+    
+    form_request = request.form.to_dict() # create a dict from the form
+    day_name = list(form_request)[0].split('_') # get the day from the first name
     day = next((x for x in week_data['days'] if x.get('id') == day_name[0]), None)
 
-    for key, value in form_request.items():
+    for key, value in form_request.items(): # auto update the data
         key = key.split('_')[1]
         day[key] = value
 
-    file_name = file_helper.upload_image(request)
+    file_name = file_helper.upload_image(request) # save the image
     if file_name:
         day['image'] = file_name
-    week_data['new_week'] = False
+    week_data['new_week'] = False 
 
-    data_path = get_file_path(year, week_number)
-    file_helper.save_json(data_path, week_data)
+    data_path = get_file_path(year, week_number) 
+    file_helper.save_json(data_path, week_data) # save the file
 
     return week_data
 
 def get_file_path(year, week_number):
-    """Summary
+    """Summary returns the file name for the file of a week
     Args:
         data_path (String): Folder where data is stored
         year (String): Year of weeknumber
@@ -99,6 +99,12 @@ def get_file_path(year, week_number):
 
 
 def add_days_name_to_date(week_data):
+    """add the name of the day to the data
+    Args:
+        week_data (dict): week_data
+    Returns:
+        String: Returns the week_data with added names
+    """
     counter = 0
     if (week_data.get('days')):
         for day in week_data['days']:

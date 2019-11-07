@@ -5,7 +5,7 @@ from . import config
 from werkzeug.utils import secure_filename
 
 def file_exists(file_path):
-    """Summary
+    """Summary Checks if a file exists
     Args:
         file_path (String): Path to file
     Returns:
@@ -17,7 +17,7 @@ def file_exists(file_path):
         return False
 
 def save_json(json_path, data):
-    """Summary
+    """Summary saves a json to a file
     Args:
         json_path (String): Path to file
         data (String): String to save
@@ -26,7 +26,7 @@ def save_json(json_path, data):
         json.dump(data, open_file, indent=4)
 
 def load_json(json_path):
-    """Summary
+    """Summary load a json from a file
     Args:
         json_path (String): Path to file
     Returns:
@@ -43,21 +43,25 @@ def load_json(json_path):
         return data
 
 def upload_image(request):
+    """Saves a image to the file system
+    Args:
+        request (Request): Form request
+    Returns:
+        String: Filename of the save file
+    """
     if 'file' not in request.files:
         print("file not found")
-    file = request.files['file']
-    if file.filename == '':
-	    print('No file selected for uploading')
-    
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(config.UPLOAD_FOLDER, filename))
-        print('File successfully uploaded')
-        return filename
     else:
-        print('Allowed file types are txt, pdf, png, jpg, jpeg, gif') 
+        file = request.files['file']
+        if allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(config.UPLOAD_FOLDER, filename))
+            return filename
 	
-
 def allowed_file(filename):
-	return '.' in filename and filename.rsplit('.', 1)[1].lower() in config.ALLOWED_EXTENSIONS
+    """Checks if the file type is allowed in the application
+    Returns:
+        Boolean: File type allowed
+    """
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in config.ALLOWED_EXTENSIONS
 
