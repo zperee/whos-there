@@ -2,7 +2,6 @@
 # Created by https://www.gitignore.io/api/code,flask
 # Edit at https://www.gitignore.io/?templates=code,flask
 
-data/*
 static/menu_images
 ### Code ###
 .vscode/*
