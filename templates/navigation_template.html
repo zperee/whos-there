@@ -20,20 +20,9 @@
                     <a class="dropdown-item" href="{{ url_for('add_week', future = 2) }}">Add week after next</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ url_for('edit_week') }}" id="navbarDropdownMenuLink2" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                        <!--ToDo dynamic loading of names-->
-                        <a class="dropdown-item" href="{{ url_for('vote', person = 'patrick') }}">Patrick</a>
-                        <a class="dropdown-item" href="{{ url_for('vote', person = 'silvia') }}">Silvia</a>
-                        <a class="dropdown-item" href="{{ url_for('vote', person = 'giulia')}}">Giulia</a>
-                        <a class="dropdown-item" href="{{ url_for('vote', person = 'amelia')}}">Amelia</a>
-                        <a class="dropdown-item" href="{{ url_for('vote', person = 'elia') }}">Elia</a>
-                    </div>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('vote') }}">Vote</a>
+            </li>
         </ul>
     </div>
 </nav>

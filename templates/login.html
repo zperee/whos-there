@@ -1,0 +1,43 @@
+{% extends "public_template.html" %}
+
+{% block title %}Who's there{% endblock %}
+
+{% block main %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1>Login</h1>
+            <hr>
+            <form method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control {% if error %}is-invalid{% endif %}" name="username"
+                        placeholder="Username" value="" />
+                    {% if error %}
+                    <div class="invalid-feedback">
+                        Login failed
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control {% if error %}is-invalid{% endif %}" name="password"
+                        placeholder=" Password" value="" />
+                    {% if error %}
+                    <div class="invalid-feedback">
+                        Login failed
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+{% endblock %}
