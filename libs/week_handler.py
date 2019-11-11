@@ -86,7 +86,7 @@ def get_file_path(year, week_number):
     Returns:
         String: Returns the file path to a week file
     """
-    return '%s%s%s%s%s%s' % (config.DATA_PATH, '/' , year, '_', week_number, '.txt')
+    return '%s%s%s%s%s%s' % (config.DATA_PATH, '/week_data/' , year, '_', week_number, '.txt')
 
 
 def add_days_name_to_date(week_data):

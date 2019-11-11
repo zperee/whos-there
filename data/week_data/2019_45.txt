@@ -18,7 +18,10 @@
         {
             "id": "day2",
             "date": "05.11.2019",
-            "day_name": "Tuesday"
+            "day_name": "Tuesday",
+            "menu": "test",
+            "time": "SDF",
+            "image": "placeholder.png"
         },
         {
             "id": "day3",
@@ -28,7 +31,9 @@
         {
             "id": "day4",
             "date": "07.11.2019",
-            "day_name": "Thursday"
+            "day_name": "Thursday",
+            "menu": "SDF",
+            "time": ""
         },
         {
             "id": "day5",

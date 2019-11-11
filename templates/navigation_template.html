@@ -5,23 +5,37 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('show_week') }}">Show current week</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Add week
+                    Week editor
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url_for('add_week', future = 0) }}">Add current week</a>
-                    <a class="dropdown-item" href="{{ url_for('add_week', future = 1) }}">Add next week</a>
-                    <a class="dropdown-item" href="{{ url_for('add_week', future = 2) }}">Add week after next</a>
+                    <a class="dropdown-item" href="{{ url_for('add_week', future = 0) }}">current week</a>
+                    <a class="dropdown-item" href="{{ url_for('add_week', future = 1) }}">next week</a>
+                    <a class="dropdown-item" href="{{ url_for('add_week', future = 2) }}">week after next</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('vote') }}">Vote</a>
+                    <a class="nav-link" href="{{ url_for('vote') }}"><i class="fas fa-vote-yea"></i></a>
+                </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/user/preferences"><i class="icon-cog"></i> Preferences</a>
+                    <a class="dropdown-item" href="/help/support"><i class="icon-envelope"></i> Contact Support</a>
+                    <hr>
+                    <a class="dropdown-item" href="/auth/logout"><i class="icon-off"></i> Logout</a>
+                </div>
             </li>
         </ul>
     </div>

@@ -1,14 +1,23 @@
 import datetime
 
-from flask import Flask, render_template, request, redirect, url_for
-from flask_login import login_user, logout_user, login_required, LoginManager
+from flask import Flask, render_template, request, redirect, url_for, session
 
 from libs import week_handler, person_handler, date_helper, auth_handler
+from functools import wraps
 
 app = Flask("Who's there")
-login_manager = LoginManager(app)
-login_manager.login_view = "login"
-app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
+app.config["SECRET_KEY"] = "OCML3BRawWEUeaxcuKHLpw"
+
+# Here is a custom decorator that verifies the JWT is present in
+# the request, as well as insuring that this user has a role of
+# `admin` in the access token
+def login_required(fn):
+    @wraps(fn)
+    def decorated_view(*args, **kwargs):
+        if not auth_handler.is_authenticated():
+            return redirect(url_for('login'))
+        return fn(*args, **kwargs)
+    return decorated_view
 
 @app.route("/")
 @app.route("/index")
@@ -56,12 +65,13 @@ def show_week(year=None, week_number=None):
 @login_required
 def vote(year=None, week_number=None):
     user = auth_handler.load_user()
+    print(user)
     valid_url_input = date_helper.validate_week_input(year, week_number)
     if not valid_url_input: # If the input is not valid redirect to current week
         return redirect_if_not_valid('/vote/')
     
     week_data = week_handler.load_week(year, week_number)
-    return render_template("vote.html", week=week_data, name=user['name'].capitalize())
+    return render_template("vote.html", week=week_data, name=user.capitalize())
 
 @app.route("/vote/yes/<date>/<person>")
 @login_required
@@ -78,8 +88,8 @@ def vote_no(date, person):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST': 
-        success = auth_handler.login(request)
-        if success:
+        user_success = auth_handler.login(request)
+        if user_success:
             return redirect(url_for("vote", person=auth_handler.load_user()))
         else:
             return render_template("login.html", error=True)
@@ -88,8 +98,8 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
-    logout_user()
-    return redirect(url_for('app.index'))
+    auth_handler.logout()
+    return redirect(url_for('index'))
 
 def redirect_if_not_valid(page):
     year = str(date_helper.get_current_year())
