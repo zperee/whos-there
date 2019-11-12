@@ -1,0 +1,3 @@
+{
+    "elia": {"username": "elia", "roles": ["admin", "family"] , "firstname": "Elia", "lastname": "Perenzin", "password": "a4259ba335d1d3f27bdcfca34d892859327eb68a03bbd148b64df4287a3ef4626e1f3b3773779be5e293f0d0b1b7983dc14745098a4ab0d73cf00f07ff957bed4af1717bf7e8ed12ac9dc425070f09123154daaacf57ae5b71371a190c087555"}
+}
