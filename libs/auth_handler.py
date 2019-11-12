@@ -23,6 +23,11 @@ def is_authenticated():
 def logout():
     session.pop("USER", None)
 
+def load_all_user():
+    users = file_helper.load_json(str(config.DATA_PATH) + "/users.txt")
+    return users
+
+
 def hash_password(password):
     """Hash a password for storing."""
     salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
@@ -30,7 +35,7 @@ def hash_password(password):
                                 salt, 100000)
     pwdhash = binascii.hexlify(pwdhash)
     return (salt + pwdhash).decode('ascii')
- 
+
 def verify_password(stored_password, provided_password):
     """Verify a stored password against one provided by user"""
     salt = stored_password[:64]

@@ -1,0 +1,106 @@
+{% extends "public_template.html" %}
+
+{% block title %}Who's there{% endblock %}
+
+{% block main %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>All users</h1>
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Roles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in all_user.values() %}
+                    <tr>
+                        <th scope="row">{{ user.get('username') }}</th>
+                        <td>{{ user.get('firstname') }}</td>
+                        <td>{{ user.get('lastname') }}</td>
+                        <td>{% for role in user.get('roles', [])%} {{ role + ", " }} {% endfor %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+        </div>
+        <div class="col-md-6 offset-3 mt-5">
+            <h3>Add User</h3>
+            <hr>
+            <form class="mt-3" method="POST">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <input id="username" name="username" placeholder="Username" type="text"
+                                class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                </div>
+                                <input id="password" name="password" placeholder="Password" type="password"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input id="firstname" name="firstname" placeholder="Firstname" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input id="lastname" name="lastname" placeholder="Lastname" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input name="checkbox" id="checkbox_0" type="checkbox" class="custom-control-input"
+                                value="family">
+                            <label for="checkbox_0" class="custom-control-label">Family</label>
+                        </div>
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input name="checkbox" id="checkbox_1" type="checkbox" class="custom-control-input"
+                                value="admin">
+                            <label for="checkbox_1" class="custom-control-label">Admin</label>
+                        </div>
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input name="checkbox" id="checkbox_2" type="checkbox" class="custom-control-input"
+                                value="extern">
+                            <label for="checkbox_2" class="custom-control-label">Extern</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <button name="submit" type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+{% endblock %}
