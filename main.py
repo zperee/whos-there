@@ -128,4 +128,4 @@ def redirect_if_not_valid(page):
     return redirect(url)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5000, host='0.0.0.0')
