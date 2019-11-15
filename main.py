@@ -110,12 +110,16 @@ def manage_user():
     users = auth_handler.load_all_user()
     return render_template("manage_user.html", all_user = users)
 
-
 @app.route("/user/manage/delete/<username>")
 @login_required
 def delete_user(username):
     auth_handler.delete_user(username)
     return redirect(request.referrer)
+
+@app.route("/user/summary")
+def summary():
+    pie_chart = person_handler.summary()
+    return render_template("summary.html", chart=pie_chart)
 
 def redirect_if_not_valid(page):
     year = str(date_helper.get_current_year())

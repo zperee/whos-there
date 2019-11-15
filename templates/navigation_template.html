@@ -21,8 +21,11 @@
                 </div>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('vote') }}"><i class="fas fa-vote-yea"></i></a>
-                </li>
+                <a class="nav-link" href="{{ url_for('summary') }}">Attendance summary</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('vote') }}"><i class="fas fa-vote-yea"></i></a>
+            </li>
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
@@ -39,8 +42,8 @@
                 </div>
                 {% else %}
                 <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item btn btn-primary" href="{{ url_for('login') }}">Login</a>
-                    </div>
+                    <a class="dropdown-item btn btn-primary" href="{{ url_for('login') }}">Login</a>
+                </div>
                 {% endif %}
             </li>
         </ul>

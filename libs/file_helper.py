@@ -65,3 +65,13 @@ def allowed_file(filename):
     """
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in config.ALLOWED_EXTENSIONS
 
+def read_all_weeks():
+    path = str(config.DATA_PATH) + '/week_data/'
+    data = []
+    for filename in os.listdir(path):
+        file_path = '%s%s%s' % (config.DATA_PATH, '/week_data/' , filename)
+        data.append(load_json(file_path))
+
+    return data
+
+

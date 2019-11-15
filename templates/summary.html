@@ -1,0 +1,23 @@
+{% extends "public_template.html" %}
+
+{% block title %}Who's there{% endblock %}
+
+{% block main %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Summary</h1>
+            <small>Summary of attendance per user</small>
+        </div>
+        <div class="summary">
+            {{ chart|safe }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+{% endblock %}
