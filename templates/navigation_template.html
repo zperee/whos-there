@@ -24,21 +24,25 @@
                     <a class="nav-link" href="{{ url_for('vote') }}"><i class="fas fa-vote-yea"></i></a>
                 </li>
         </ul>
-        {% if 'USER' in session %}
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i>
                 </a>
+                {% if 'USER' in session %}
                 <div class="dropdown-menu dropdown-menu-right">
                     <h5 class="ml-3 mt-2">Hi {{session['USER'].capitalize()}}!</h5>
                     <hr>
-                    <a class="dropdown-item" href="{{ url_for('manage_user') }}"><i class="icon-cog"></i>Manage users</a>
-                    <a class="dropdown-item text-danger" href="{{ url_for('logout') }}"><i class="icon-off"></i> Logout</a>
+                    <a class="dropdown-item" href="{{ url_for('manage_user') }}">Manage users</a>
+                    <a class="dropdown-item text-danger" href="{{ url_for('logout') }}">Logout</a>
                 </div>
+                {% else %}
+                <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item btn btn-primary" href="{{ url_for('login') }}">Login</a>
+                    </div>
+                {% endif %}
             </li>
         </ul>
-        {% endif %}
     </div>
 </nav>

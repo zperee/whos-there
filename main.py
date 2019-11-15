@@ -101,11 +101,21 @@ def logout():
     auth_handler.logout()
     return redirect(url_for('index'))
 
-@app.route('/user/manage')
+@app.route('/user/manage', methods=['GET', 'POST'])
 @login_required
 def manage_user():
+    if request.method == 'POST': 
+        auth_handler.add_user(request)
+        
     users = auth_handler.load_all_user()
     return render_template("manage_user.html", all_user = users)
+
+
+@app.route("/user/manage/delete/<username>")
+@login_required
+def delete_user(username):
+    auth_handler.delete_user(username)
+    return redirect(request.referrer)
 
 def redirect_if_not_valid(page):
     year = str(date_helper.get_current_year())

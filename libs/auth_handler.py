@@ -27,6 +27,23 @@ def load_all_user():
     users = file_helper.load_json(str(config.DATA_PATH) + "/users.txt")
     return users
 
+def add_user(request):
+    request_form = request.form
+    users = file_helper.load_json(str(config.DATA_PATH) + "/users.txt")
+
+    users[request_form.get('username')] = {
+        'username': request_form.get('username'), 
+        'password': hash_password(request_form.get('password')), 
+        'firstname': request_form.get('firstname'), 
+        'lastname': request_form.get('lastname'),
+        'roles': request_form.getlist('checkbox')
+    }
+    file_helper.save_json(str(config.DATA_PATH) + "/users.txt", users)
+
+def delete_user(username):
+    users = file_helper.load_json(str(config.DATA_PATH) + "/users.txt")
+    del users[username]
+    file_helper.save_json(str(config.DATA_PATH) + "/users.txt", users)
 
 def hash_password(password):
     """Hash a password for storing."""

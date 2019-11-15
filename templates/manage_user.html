@@ -15,15 +15,17 @@
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
                         <th scope="col">Roles</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for user in all_user.values() %}
                     <tr>
                         <th scope="row">{{ user.get('username') }}</th>
-                        <td>{{ user.get('firstname') }}</td>
-                        <td>{{ user.get('lastname') }}</td>
+                        <td>{{ user.get('firstname', '') }}</td>
+                        <td>{{ user.get('lastname', '') }}</td>
                         <td>{% for role in user.get('roles', [])%} {{ role + ", " }} {% endfor %}</td>
+                        <td><a href="{{ url_for('delete_user', username=user.get('username')) }}"><i class="fas fa-trash text-danger"></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
