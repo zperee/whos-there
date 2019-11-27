@@ -66,6 +66,10 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in config.ALLOWED_EXTENSIONS
 
 def read_all_weeks():
+    """Returns all week files  
+    Returns:
+        List: Path to every file
+    """
     path = str(config.DATA_PATH) + '/week_data/'
     data = []
     for filename in os.listdir(path):

@@ -29,17 +29,21 @@ def vote(attending, date, person):
     file_helper.save_json(week_handler.get_file_path(week[0], week[1]), week_data)
 
 def summary():
+    """Creates a pichart with the attendance of all users
+    Returns:
+        String: Returns a div that can be shown in the html
+    """
     data = file_helper.read_all_weeks()
 
     count = {}
-    for week in data:
-        for day in week['days']:
+    for week in data: # Need to iterate all weeks saved
+        for day in week['days']: # Need to interate over Mo - So in Week
             for person, attend in day.get('attending', {}).items():
                 if attend:
                     count[person] = count.get(person, 0) + 1
 
-    labels = [ k.capitalize() for k in count ]
-    values = [ v for v in count.values() ]
+    labels = [ k.capitalize() for k in count ] # Get all Labels a.k Names of Person
+    values = [ v for v in count.values() ] # Get all values 
 
     fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
     div = plot(fig, output_type="div")

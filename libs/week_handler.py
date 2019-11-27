@@ -38,14 +38,15 @@ def create_new_week(year, week_number):
     }
 
     dates = date_helper.calculate_dates_of_week(year, week_number)
+    
     id = 1
-    # ToDo load attending dynamic from config
-    for date in dates:
+    for date in dates: # set the dates in the dict weekday
         week_data['days'].append({
             'id': "day" + str(id),
             'date': date,
         })
         id += 1
+
     return week_data
 
 def update_week(request, year, week_number):

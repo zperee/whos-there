@@ -9,8 +9,7 @@ app = Flask("Who's there")
 app.config["SECRET_KEY"] = "OCML3BRawWEUeaxcuKHLpw"
 
 # Here is a custom decorator that verifies the JWT is present in
-# the request, as well as insuring that this user has a role of
-# `admin` in the access token
+# the request
 def login_required(fn):
     @wraps(fn)
     def decorated_view(*args, **kwargs):
