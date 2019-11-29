@@ -8,9 +8,20 @@ Dies ist die wohl meistgestellte Frage im Familienchat und genau dieses Problem 
 
 ## Funktion/Projektidee
 Das Tool sollte die Funktionalität besitzen, anzuzeigen wer an welchem Wochentag am Abend zum Nachtessen zuhause sein wird. Zudem sollte es möglich sein das Wochenmenü bereits im Voraus zu definieren, sowie zu definieren wann das Nachtessen bereit sein wird. 
-Das Tool sollte über den Browser bedienbar sein, zusätzlich wäre es zu wünschen wenn weitere Integrationen wie zum Beispiel in Telegram zur Verfügung stehen würden.
+Das Tool sollte über den Browser bedienbar sein.
 
 ## Installation
+Um Who's there starten zu können muss folgendes mindestens installiert sein:
+- `Python 3.6`
+- `Flask`
+- `Jinja2`
+-  `Plotly`
+
+Das Tool kann danach über die main.py mit folgendem command ausgeführt werden.
+
+`python main.py`
+
+Das Webtool startet und kann danach von jedem Gerät aus dem Netzwerk über die IP Adresse und Port 5000 aufgerufen werden. 
 
 ## Workflow
 1. Im Browser wird eine neue Woche erstellt in welcher auch gleich das Wochenmenü definiert werden kann.
@@ -49,3 +60,36 @@ Im File `users.txt` werden die Informationen für das Login gespeichert. Das Fil
 ![add_new_week](doku/show_week.png)
 
 ## Benutzeranleitung
+### Woche erfassen
+Wenn man nach der Installation das erste mal auf die Seite geht, sind noch keine Daten vorhanden. Es gibt zwei möglichkeiten eine Woche anzulegen. 
+
+1. Die erste Möglichkeit besteht darin über die Grüne Schaltfläche die aktuelle Woche hinzuzufügen oder über den Menüpunkt `Week editor` die aktuelle, die nächste oder die übernächste Woche hinzuzufügen. 
+![add week](doku/add_week_1.png)
+
+2. Danach befindet man sich im `Weekeditor` und kann alle Tage in der ausgewählten Woche bearbeiten. Es besteht die möglichkeit das Menü zu definieren, so wie eine zeit festzulegen und ein Bild hochzuladen.
+
+3. Nach der Eingabe kann man den Tag speichern. **Wichtig jeder Tag mus einzeln gespeichert werden**
+![add week](doku/add_week_2.png)
+
+### Abstimmen
+Damit ersichtlich wird welche Personen an welchem Tag zuhause sind kann jede Person individuell Abstimmen wann er zuhause sein wird.
+
+1. Im Menü auf folgendes Icon klicken:
+![vote](doku/vote_1.png)
+
+2. Danach muss der Benutzer sich einloggen. Für die Demo wurde für den Dozenten @fabod bereits einen User erstellt: Username: **fabod**
+Password: **1234** 
+3. Nach dem einloggen kann für jeden Tag in dem bereits ein Menü definiert wurde abgestimmt werden ob man dann zuhause ist.
+![vote](doku/vote_2.png)
+4. Bei erneutem klicken auf das Icon kann die Auswahl geändert werden.
+### Userverwaltung
+1. Um alle Login bzw. Benutzer zu Verwalten muss ein User eingeloggt sein. Danach kann er oben rechts auf sein Profil klicken und den Menüpunkt `Manage users` auswählen. 
+
+2. Auf der Benutzeroberfläche werden oben alle vorhandenen Benutzer aufgelistet. Diese könne auch gelöscht werden mit dem Icon ganz auf der rechten Seite. 
+![user management](doku/user_management_1.png)
+3. Neue Benutzer können über das Formular ganz unten hinzugefügt werden. Dabei muss ein Benutzername sowie ein Password definiert werden. Die Rollen die aus der Liste ausgewählt werden können haben zurzeit noch keinen Einfluss auf das Verhalten des Benutzers und dient nur der einfacheren unterscheidung. 
+![user management](doku/user_management_2.png)
+
+### Auswertung
+Im Menupünkt `Attendance summary` kann eine Auswertung gemacht werden, wie oft eine Person zum Nachtessen zuhause war. 
+![summary](doku/summary.png)
