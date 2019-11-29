@@ -1,5 +1,10 @@
 # Who's there
 ![Conda (channel only)](https://img.shields.io/conda/vn/conda-forge/flask?label=flask) ![Conda (channel only)](https://img.shields.io/conda/vn/conda-forge/jinja2?label=jinja2) ![Conda (channel only)](https://img.shields.io/conda/vn/conda-forge/plotly?label=plotly)
+
+## Demo 
+Eine kurze Demo des Tools befindet sich auf Youtube unter folgendem Link:
+[Demo hier](https://www.youtube.com/watch?v=20hjYxGVrGM&feature=youtu.be)
+
 ## Ausgangslage
 In einem Haushalt in dem alle zu unregelmässigen Arbeitszeiten arbeiten, ist die koordination am Abend sehr schwierig. 
 > *Wer isst heute Abend zuhause?*
@@ -15,7 +20,7 @@ Um Who's there starten zu können muss folgendes mindestens installiert sein:
 - `Python 3.6`
 - `Flask`
 - `Jinja2`
--  `Plotly`
+- `Plotly`
 
 Das Tool kann danach über die main.py mit folgendem command ausgeführt werden.
 
@@ -70,6 +75,9 @@ Wenn man nach der Installation das erste mal auf die Seite geht, sind noch keine
 
 3. Nach der Eingabe kann man den Tag speichern. **Wichtig jeder Tag mus einzeln gespeichert werden**
 ![add week](doku/add_week_2.png)
+
+4. Das File wird nach dem speichern erstellt und kann über `show current week` angezeigt werden.
+![add week](doku/overview.png)
 
 ### Abstimmen
 Damit ersichtlich wird welche Personen an welchem Tag zuhause sind kann jede Person individuell Abstimmen wann er zuhause sein wird.
