@@ -1,3 +1,8 @@
+""" 
+Summary: 
+    Library of functions which handels the file management.
+"""
+
 import os.path
 import json
 

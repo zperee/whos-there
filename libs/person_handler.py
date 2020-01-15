@@ -1,3 +1,9 @@
+""" 
+Summary: 
+    Library which contains all the functions related to 
+    the attendance (voting) part of the tool.
+"""
+
 from . import date_helper
 from . import week_handler
 from . import file_helper

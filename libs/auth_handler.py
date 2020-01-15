@@ -1,3 +1,8 @@
+""" 
+Summary: 
+    Library which contains all the functions related to usermanagement and login
+"""
+
 from . import file_helper
 from . import config
 from flask import session

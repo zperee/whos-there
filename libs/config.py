@@ -1,3 +1,8 @@
+""" 
+Summary: 
+    Variables that are used in many places in the tool
+"""
+
 import os
 from pathlib import Path
 

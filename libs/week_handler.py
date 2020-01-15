@@ -1,3 +1,8 @@
+""" 
+Summary: 
+    Library with functions for the week management
+"""
+
 from . import file_helper
 from . import week_handler
 from . import date_helper

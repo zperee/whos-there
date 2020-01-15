@@ -1,3 +1,9 @@
+""" 
+Summary: 
+    Library which contains all the functions that help with the week number
+    calculations.
+"""
+
 import datetime
 import time
 
